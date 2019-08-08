@@ -1,0 +1,31 @@
+pipeline{
+  agent any
+  tools {
+   nodejs 'NodeJS 8.9.0'
+ }
+  stages {
+      stage("build"){
+          steps{
+              echo 'Building the result code'
+              dir("result"){
+              sh 'npm install'
+  	    }
+          }
+      }
+      stage("test"){
+          steps{
+              echo 'running result'
+              dir("result"){
+              sh 'npm test' 
+            }
+           }
+      }
+  
+  }  
+
+post{
+    always{
+        echo "this pipeline is completed"
+    }
+}
+}
