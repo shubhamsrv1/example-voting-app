@@ -1,0 +1,35 @@
+pipeline{
+  agent any
+  tools {
+   maven 'Maven 3.6.1'
+ }
+  stages {
+      stage("build"){
+          steps{
+              echo 'Building the code'
+              dir("worker")
+              sh 'mvn compile'
+          }
+      }
+      stage("test"){
+          steps{
+              echo 'running test cases'
+             /* dir("worker")
+              sh 'mvn test' */
+           }
+      }
+      stage("compile"){
+          steps{
+              echo 'packaging the code'
+             /* dir ("worker")
+            */  
+           }
+        }
+  
+  }  
+}
+post{
+    always{
+        echo "this pipeline is completed"
+    }
+}
